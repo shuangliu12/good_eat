@@ -1,0 +1,36 @@
+<h1>One Restaurant</h1>
+
+<p>Name: <%= @restaurant.name %></p>
+<p>Address: <%= @restaurant.address %>,
+        <%= @restaurant.city %> <%= @restaurant.state %><%= @restaurant.zip %></p>
+<p>Category : <%= @restaurant.category %></p>
+
+<%= link_to 'Main', restaurants_path%>
+
+
+<h2>Reviews</h2>
+<% @restaurant.reviews.each do |review| %>
+  <li>Rating: <%=review.rating%>,<%=review.body%></li>
+<% end %>
+
+
+<h2>Write a review</h2>
+
+<%= form_for([@restaurant, @restaurant.reviews.build]) do |f| %>
+<p>
+  <%= f.label :rating %><br>
+  <%= f.text_field :rating %>
+</p>
+
+<p>
+  <%= f.label :body%><br>
+  <%= f.text_field :body %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>
+
+
